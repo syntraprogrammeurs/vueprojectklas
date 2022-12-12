@@ -4,7 +4,17 @@
       <div class="col-12 col-lg-10 offset-lg-1">
         <img alt="Vue logo" src="../assets/logo.png" />
         <div class="row">
-          <TicketItem v-for="event in events" :key="event.id" :event="event" />
+          <input
+            class="my-5"
+            type="text"
+            v-model="search"
+            placeholder="search concert ..."
+          />
+          <TicketItem
+            v-for="event in filteredItems"
+            :key="event.id"
+            :event="event"
+          />
         </div>
       </div>
     </div>
@@ -20,6 +30,7 @@ export default {
   name: "HomeView",
   data() {
     return {
+      search: "",
       events: [
         {
           id: 1,
@@ -43,6 +54,15 @@ export default {
         },
       ],
     };
+  },
+  computed: {
+    filteredItems() {
+      return this.events.filter((event) => {
+        return (
+          event.title.toLowerCase().indexOf(this.search.toLowerCase()) > -1
+        );
+      });
+    },
   },
   components: {
     TicketItem,
