@@ -1,7 +1,13 @@
 <template>
-  <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png" />
-    <TicketItem v-for="event in events" :key="event.id" :event="event" />
+  <div class="home container-fluid">
+    <div class="row">
+      <div class="col-12 col-lg-10 offset-lg-1">
+        <img alt="Vue logo" src="../assets/logo.png" />
+        <div class="row">
+          <TicketItem v-for="event in events" :key="event.id" :event="event" />
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
