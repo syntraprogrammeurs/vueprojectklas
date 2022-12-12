@@ -1,6 +1,15 @@
 <template>
-  <div class="portfolio">
-    <PortfolioItem v-for="werk in werken" :key="werk.id" :werk="werk" />
+  <div class="container-fluid">
+    <div class="col-12 col-lg-6 offset-lg-3">
+      <h2>List group Example</h2>
+      <PortfolioItem v-for="werk in werken" :key="werk.id" :werk="werk" />
+      <h2>Accordion Example</h2>
+      <AccordionItem
+        v-for="werk in werken"
+        :key="werk.id"
+        :werk="werk"
+      ></AccordionItem>
+    </div>
   </div>
 </template>
 
@@ -8,6 +17,7 @@
 // @ is an alias to /src
 
 import PortfolioItem from "@/components/PortfolioItem";
+import AccordionItem from "@/components/AccordionItem";
 
 export default {
   name: "PortfolioView",
@@ -39,6 +49,7 @@ export default {
   },
   components: {
     PortfolioItem,
+    AccordionItem,
   },
 };
 </script>
