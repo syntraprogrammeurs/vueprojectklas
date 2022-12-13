@@ -4,11 +4,21 @@
       <h2>List group Example</h2>
       <PortfolioItem v-for="werk in werken" :key="werk.id" :werk="werk" />
       <h2>Accordion Example</h2>
-      <AccordionItem
-        v-for="werk in werken"
-        :key="werk.id"
-        :werk="werk"
-      ></AccordionItem>
+      <div class="accordion" id="accordionExample">
+        <AccordionItem
+          v-for="werk in werken"
+          :key="werk.id"
+          :werk="werk"
+        ></AccordionItem>
+      </div>
+      <h2>Button Group Example</h2>
+      <div class="btn-group" role="group" aria-label="Basic example">
+        <ButtongroupItem
+          v-for="werk in werken"
+          :key="werk.id"
+          :werk="werk"
+        ></ButtongroupItem>
+      </div>
     </div>
   </div>
 </template>
@@ -18,6 +28,7 @@
 
 import PortfolioItem from "@/components/PortfolioItem";
 import AccordionItem from "@/components/AccordionItem";
+import ButtongroupItem from "@/components/ButtongroupItem";
 
 export default {
   name: "PortfolioView",
@@ -48,6 +59,7 @@ export default {
     };
   },
   components: {
+    ButtongroupItem,
     PortfolioItem,
     AccordionItem,
   },

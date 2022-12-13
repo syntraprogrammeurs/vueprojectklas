@@ -1,29 +1,27 @@
 <template>
-  <div class="accordion" id="accordionExample">
-    <div class="accordion-item">
-      <h2 class="accordion-header" :id="'heading' + werk.id">
-        <button
-          class="accordion-button"
-          :class="[werk.id % 2 ? 'bg-danger text-white' : 'bg-dark text-white']"
-          type="button"
-          data-bs-toggle="collapse"
-          :data-bs-target="'#collapse' + werk.id"
-          aria-expanded="true"
-          :aria-controls="'collapse' + werk.id"
-        >
-          {{ werk.id }} - {{ werk.title }}
-        </button>
-      </h2>
-      <div
-        :id="'collapse' + werk.id"
-        class="accordion-collapse collapse collapsed"
-        :aria-labelledby="'heading' + werk.id"
-        data-bs-parent="#accordionExample"
+  <div class="accordion-item">
+    <h2 class="accordion-header" :id="'heading' + werk.id">
+      <button
+        class="accordion-button"
+        :class="[werk.id % 2 ? 'bg-danger text-white' : 'bg-dark text-white']"
+        type="button"
+        data-bs-toggle="collapse"
+        :data-bs-target="'#collapse' + werk.id"
+        aria-expanded="true"
+        :aria-controls="'collapse' + werk.id"
       >
-        <div class="accordion-body">
-          <h4>{{ werk.category }}</h4>
-          {{ werk.description }}
-        </div>
+        {{ werk.id }} - {{ werk.title }}
+      </button>
+    </h2>
+    <div
+      :id="'collapse' + werk.id"
+      class="accordion-collapse collapse collapsed"
+      :aria-labelledby="'heading' + werk.id"
+      data-bs-parent="#accordionExample"
+    >
+      <div class="accordion-body">
+        <h4>{{ werk.category }}</h4>
+        {{ werk.description }}
       </div>
     </div>
   </div>
