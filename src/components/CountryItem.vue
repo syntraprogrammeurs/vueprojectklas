@@ -22,10 +22,12 @@
           <p class="card-text"></p>
         </div>
         <ul class="list-group list-group-flush">
-          <!--          <li v-if="country.capital[0]" class="list-group-item">
-            {{ country.capital[0] }}
+          <li class="list-group-item">
+            {{ country.capital }}
           </li>
-          <li v-else class="list-group-item">Oh no 😢</li>-->
+          <li class="list-group-item">
+            {{ country.population }}
+          </li>
         </ul>
         <div class="card-body">
           <a href="#" class="card-link">Card link</a>
