@@ -31,7 +31,7 @@ const routes = [
   },
   {
     path: "/event/:id",
-    name: "TicketDetails",
+    name: "TicketDetailsView",
     props: true,
     component: TicketDetailsView,
   },
