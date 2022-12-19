@@ -10,6 +10,17 @@
             v-model="search"
             placeholder="search concert ..."
           />
+          <router-link
+            :to="{ name: 'HomeView', query: { page: page - 1 } }"
+            rel="prev"
+            v-if="page != 1"
+            >Vorige</router-link
+          >
+          <router-link
+            :to="{ name: 'HomeView', query: { page: page + 1 } }"
+            rel="next"
+            >Volgende</router-link
+          >
           <TicketItem
             v-for="event in filteredItems"
             :key="event.id"
@@ -26,6 +37,7 @@
 
 import TicketItem from "@/components/TicketItem";
 import TicketService from "@/services/TicketService";
+import { watchEffect } from "vue";
 
 export default {
   name: "HomeView",
@@ -49,14 +61,16 @@ export default {
     TicketItem,
   },
   created() {
-    TicketService.getEvents(2, this.page)
-      .then((response) => {
-        console.log(response.data);
-        this.events = response.data;
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+    watchEffect(() => {
+      TicketService.getEvents(2, this.page)
+        .then((response) => {
+          console.log(response.data);
+          this.events = response.data;
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    });
   },
 };
 </script>

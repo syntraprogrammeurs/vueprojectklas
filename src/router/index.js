@@ -7,7 +7,7 @@ import TicketDetailsView from "@/views/TicketDetailsView";
 const routes = [
   {
     path: "/",
-    name: "home",
+    name: "HomeView",
     component: HomeView,
     props: (route) => ({ page: parseInt(route.query.page) || 1 }),
   },
