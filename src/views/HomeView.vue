@@ -29,6 +29,7 @@ import TicketService from "@/services/TicketService";
 
 export default {
   name: "HomeView",
+  props: ["page"],
   data() {
     return {
       search: "",
@@ -48,7 +49,7 @@ export default {
     TicketItem,
   },
   created() {
-    TicketService.getEvents()
+    TicketService.getEvents(2, this.page)
       .then((response) => {
         console.log(response.data);
         this.events = response.data;

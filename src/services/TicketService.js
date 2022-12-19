@@ -10,8 +10,8 @@ const clientApiService = axios.create({
 });
 
 export default {
-  getEvents() {
-    return clientApiService("/events");
+  getEvents(perPage, page) {
+    return clientApiService("/events?_limit=" + perPage + "&_page=" + page);
   },
   getEvent(id) {
     return clientApiService.get("/events/" + id);
