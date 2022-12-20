@@ -2,9 +2,11 @@ import { createRouter, createWebHistory } from "vue-router";
 import HomeView from "../views/HomeView.vue";
 import PortfolioView from "../views/PortfolioView.vue";
 import ContactView from "../views/ContactView.vue";
+import TicketLayoutView from "@/views/Ticket/TicketLayoutView";
 import TicketDetailsView from "@/views/Ticket/TicketDetailsView";
 import TicketEditView from "@/views/Ticket/TicketEditView";
-import TicketLayoutView from "@/views/Ticket/TicketLayoutView";
+import TicketRegisterView from "@/views/Ticket/TicketRegisterView";
+import p404View from "../views/p404View";
 
 const routes = [
   {
@@ -19,9 +21,13 @@ const routes = [
     component: PortfolioView,
   },
   {
-    path: "/contact",
-    name: "contact",
+    path: "/contact-us",
+    name: "contact-us",
     component: ContactView,
+  },
+  {
+    path: "/contact",
+    redirect: { name: "contact-us" },
   },
   {
     path: "/country",
@@ -33,7 +39,7 @@ const routes = [
       import(/* webpackChunkName: "about" */ "../views/CountryView.vue"),
   },
   {
-    path: "/event/:id",
+    path: "/events/:id",
     name: "TicketLayoutView",
     props: true,
     component: TicketLayoutView,
@@ -44,11 +50,27 @@ const routes = [
         component: TicketDetailsView,
       },
       {
-        path: "/edit",
+        path: "edit",
         name: "TicketEditView",
         component: TicketEditView,
       },
+      {
+        path: "register",
+        name: "TicketRegisterView",
+        component: TicketRegisterView,
+      },
     ],
+  },
+  {
+    path: "/event/:id",
+    redirect: (to) => {
+      return { name: "TicketDetailsView", params: { id: to.params.id } };
+    },
+  },
+  {
+    path: "/:catchAll(.*)",
+    name: "p404View",
+    component: p404View,
   },
   /*{
     path: "/event/:id/edit",

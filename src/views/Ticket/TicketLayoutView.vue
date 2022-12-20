@@ -1,15 +1,18 @@
 <template>
   <div class="col-12 col-lg-6">
-    <div class="card h-100">
-      <div id="nav">
-        <router-link :to="{ name: 'TicketDetailsView', params: { id } }"
-          >Details</router-link
-        >
-        <router-link :to="{ name: 'TicketEditView', params: { id } }"
-          >Edit</router-link
-        >
-        <router-view :event="event"></router-view>
-      </div>
+    <div id="nav">
+      <router-link :to="{ name: 'TicketDetailsView', params: { id } }"
+        >Details</router-link
+      >
+      |
+      <router-link :to="{ name: 'TicketEditView', params: { id } }"
+        >Edit</router-link
+      >
+      |
+      <router-link :to="{ name: 'TicketRegisterView', params: { id } }"
+        >Register</router-link
+      >
+      <router-view :event="event"></router-view>
     </div>
   </div>
 </template>
