@@ -10,17 +10,23 @@
             v-model="search"
             placeholder="search concert ..."
           />
-          <router-link
-            :to="{ name: 'HomeView', query: { page: page - 1 } }"
-            rel="prev"
-            v-if="page != 1"
-            >Vorige</router-link
-          >
-          <router-link
-            :to="{ name: 'HomeView', query: { page: page + 1 } }"
-            rel="next"
-            >Volgende</router-link
-          >
+          <div class="d-flex justify-content-center gap-3">
+            <router-link
+              :to="{ name: 'HomeView', query: { page: page - 1 } }"
+              rel="prev"
+              v-if="page != 1"
+              class="btn btn-primary"
+              >Vorige</router-link
+            >
+            <router-link
+              :to="{ name: 'HomeView', query: { page: page + 1 } }"
+              rel="next"
+              class="btn btn-primary"
+              v-if="hasNextPage"
+              >Volgende</router-link
+            >
+          </div>
+
           <TicketItem
             v-for="event in filteredItems"
             :key="event.id"
@@ -46,6 +52,7 @@ export default {
     return {
       search: "",
       events: null,
+      totalEvents: 0,
     };
   },
   computed: {
@@ -55,6 +62,10 @@ export default {
           event.title.toLowerCase().indexOf(this.search.toLowerCase()) > -1
         );
       });
+    },
+    hasNextPage() {
+      var totalPages = Math.ceil(this.totalEvents / 2);
+      return this.page < totalPages;
     },
   },
   components: {
@@ -66,6 +77,7 @@ export default {
         .then((response) => {
           console.log(response.data);
           this.events = response.data;
+          this.totalEvents = response.headers["x-total-count"];
         })
         .catch((error) => {
           console.log(error);

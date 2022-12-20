@@ -23,23 +23,7 @@
 </template>
 
 <script>
-import TicketService from "@/services/TicketService";
-
 export default {
-  props: ["id"],
-  data() {
-    return {
-      event: null,
-    };
-  },
-  created() {
-    TicketService.getEvent(this.id)
-      .then((response) => {
-        this.event = response.data;
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  },
+  props: ["event"],
 };
 </script>

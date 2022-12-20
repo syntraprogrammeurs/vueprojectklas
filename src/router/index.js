@@ -2,7 +2,9 @@ import { createRouter, createWebHistory } from "vue-router";
 import HomeView from "../views/HomeView.vue";
 import PortfolioView from "../views/PortfolioView.vue";
 import ContactView from "../views/ContactView.vue";
-import TicketDetailsView from "@/views/TicketDetailsView";
+import TicketDetailsView from "@/views/Ticket/TicketDetailsView";
+import TicketEditView from "@/views/Ticket/TicketEditView";
+import TicketLayoutView from "@/views/Ticket/TicketLayoutView";
 
 const routes = [
   {
@@ -32,10 +34,28 @@ const routes = [
   },
   {
     path: "/event/:id",
-    name: "TicketDetailsView",
+    name: "TicketLayoutView",
     props: true,
-    component: TicketDetailsView,
+    component: TicketLayoutView,
+    children: [
+      {
+        path: "",
+        name: "TicketDetailsView",
+        component: TicketDetailsView,
+      },
+      {
+        path: "/edit",
+        name: "TicketEditView",
+        component: TicketEditView,
+      },
+    ],
   },
+  /*{
+    path: "/event/:id/edit",
+    name: "TicketEditView",
+    props: true,
+    component: TicketEditView,
+  },*/
 ];
 
 const router = createRouter({
